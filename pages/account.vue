@@ -11,14 +11,14 @@ const schema = z.object({
 
 type Schema = z.output<typeof schema>;
 
-const { data } = await useFetch<{ user: User }>("/api/fusionauth/user");
+const { data } = await useFetch<{ user: User }>("/api/fusionauth/me/user");
 let state: User;
 if (data.value?.user) {
   state = reactive(data.value.user);
 }
 
 async function onSubmit() {
-  const { user } = await $fetch<{ user: User }>("/api/fusionauth/user", {
+  const { user } = await $fetch<{ user: User }>("/api/fusionauth/me/user", {
     method: "patch",
     headers: {
       "Content-Type": "multipart/form-data",
