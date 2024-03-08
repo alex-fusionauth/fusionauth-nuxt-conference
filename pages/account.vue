@@ -11,10 +11,10 @@ const schema = z.object({
 
 type Schema = z.output<typeof schema>;
 
-const { user } = await $fetch<{ user: User }>("/api/fusionauth/user");
+const { data } = await useFetch<{ user: User }>("/api/fusionauth/user");
 let state: User;
-if (user) {
-  state = reactive(user);
+if (data.value?.user) {
+  state = reactive(data.value.user);
 }
 
 async function onSubmit() {
@@ -25,6 +25,7 @@ async function onSubmit() {
     },
     body: toRaw(state),
   });
+  console.log(user);
 }
 </script>
 
