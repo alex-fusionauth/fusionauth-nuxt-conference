@@ -13,6 +13,12 @@ const getComments = async () => {
       query: { id: route.params.id },
     }
   );
+  comments?.value?.sort((a, b) => {
+    if (a?.insertInstant && b?.insertInstant) {
+      return b.insertInstant - a.insertInstant;
+    }
+    return 0;
+  });
   return comments;
 };
 
