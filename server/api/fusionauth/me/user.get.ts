@@ -1,15 +1,6 @@
 import { getToken } from "#auth";
-import { FusionAuthClient } from "@fusionauth/typescript-client";
+import { client } from "../../../../utils/server/fusionauth";
 
-const fusionAuthApiKey = process.env.FUSIONAUTH_API_KEY;
-const fusionAuthUrl = process.env.FUSIONAUTH_URL;
-const missingError = "missing in environment variables.";
-if (!fusionAuthApiKey) {
-  throw Error("FUSIONAUTH_API_KEY" + missingError);
-}
-if (!fusionAuthUrl) {
-  throw Error("FUSIONAUTH_URL" + missingError);
-}
 export default eventHandler(async (event) => {
   const token = await getToken({ event });
   if (!token) {
@@ -25,14 +16,13 @@ export default eventHandler(async (event) => {
     });
   }
 
-  const client = new FusionAuthClient(fusionAuthApiKey, fusionAuthUrl);
   try {
     const clientResponse = await client.retrieveUser(token.sub);
     return {
       user: clientResponse.response.user,
     };
   } catch (e) {
-    console.error(e);
+    console.error(JSON.stringify(e));
     return e;
   }
 });

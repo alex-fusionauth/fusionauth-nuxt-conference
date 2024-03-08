@@ -14,7 +14,7 @@ export default eventHandler(async (event) => {
     const clientResponse = await client.retrieveUserComments(id as string);
     return clientResponse.response.userComments;
   } catch (e) {
-    console.error(e);
+    console.error(JSON.stringify(e));
     return e;
   }
 });

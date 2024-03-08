@@ -1,6 +1,5 @@
 import { getToken } from "#auth";
-import { Sort } from "@fusionauth/typescript-client";
-import { client } from "../../../utils/server/fusionauth";
+import { client } from "../../../../utils/server/fusionauth";
 
 export default eventHandler(async (event) => {
   const token = await getToken({ event });
@@ -17,16 +16,17 @@ export default eventHandler(async (event) => {
     });
   }
 
+  const body = await readBody(event);
+
   try {
-    const clientResponse = await client.searchUsersByQuery({
-      search: {
-        queryString: "*",
-        sortFields: [{ name: "email", order: Sort.asc }],
+    const clientResponse = await client.commentOnUser({
+      userComment: {
+        commenterId: token?.sub,
+        userId: body.userId,
+        comment: body.comment,
       },
     });
-    return {
-      user: clientResponse.response,
-    };
+    return clientResponse.response;
   } catch (e) {
     console.error(JSON.stringify(e));
     return e;

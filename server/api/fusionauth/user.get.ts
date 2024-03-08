@@ -16,7 +16,7 @@ export default eventHandler(async (event) => {
       user: clientResponse.response.user,
     };
   } catch (e) {
-    console.error(e);
+    console.error(JSON.stringify(e));
     return e;
   }
 });
