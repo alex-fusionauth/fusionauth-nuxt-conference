@@ -11,10 +11,8 @@ export default eventHandler(async (event) => {
   }
 
   try {
-    const clientResponse = await client.retrieveUser(id as string);
-    return {
-      user: clientResponse.response.user,
-    };
+    const clientResponse = await client.retrieveUserComments(id as string);
+    return clientResponse.response.userComments;
   } catch (e) {
     console.error(e);
     return e;
