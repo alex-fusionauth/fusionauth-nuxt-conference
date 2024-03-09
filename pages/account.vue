@@ -31,20 +31,29 @@ async function onSubmit() {
 
 <template>
   <UCard>
-    <UForm :schema="schema" :state="state" class="space-y-4" @submit="onSubmit">
-      <UFormGroup label="First Name" name="firstName">
-        <UInput v-model="state.firstName" />
-      </UFormGroup>
+    <section class="flex flex-col gap-8">
+      <h1 class="text-5xl">Your User Settings</h1>
 
-      <UFormGroup label="Last Name" name="lastName">
-        <UInput v-model="state.lastName" />
-      </UFormGroup>
+      <UForm
+        :schema="schema"
+        :state="state"
+        class="space-y-4"
+        @submit="onSubmit"
+      >
+        <UFormGroup label="First Name" name="firstName">
+          <UInput v-model="state.firstName" />
+        </UFormGroup>
 
-      <UFormGroup label="Avatar" name="imageUrl">
-        <UInput v-model="state.imageUrl" type="url" />
-      </UFormGroup>
+        <UFormGroup label="Last Name" name="lastName">
+          <UInput v-model="state.lastName" />
+        </UFormGroup>
 
-      <UButton type="submit"> Submit </UButton>
-    </UForm>
+        <UFormGroup label="Avatar" name="imageUrl">
+          <UInput v-model="state.imageUrl" type="url" />
+        </UFormGroup>
+
+        <UButton type="submit"> Submit </UButton>
+      </UForm>
+    </section>
   </UCard>
 </template>

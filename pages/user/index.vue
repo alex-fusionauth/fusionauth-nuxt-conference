@@ -9,8 +9,8 @@ const { data } = await useFetch<{ user: { users: User[] } }>(
 <template>
   <UContainer class="flex flex-col gap-4">
     <section>
-      <h1 class="text-5xl">Comments</h1>
-      <p class="text-xl">Select a user to leave them some nice comments 🤣</p>
+      <h1 class="text-5xl">Users</h1>
+      <p class="text-xl">Get User Details</p>
     </section>
     <section class="grid grid-flow-col gap-4">
       <NuxtLink v-for="user in data?.user?.users" :to="`/comment/${user.id}`">
