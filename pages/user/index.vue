@@ -13,7 +13,7 @@ const { data } = await useFetch<{ user: { users: User[] } }>(
       <p class="text-xl">Get User Details</p>
     </section>
     <section class="grid grid-flow-col gap-4">
-      <NuxtLink v-for="user in data?.user?.users" :to="`/comment/${user.id}`">
+      <NuxtLink v-for="user in data?.user?.users" :to="`/user/${user.id}`">
         <UCard>
           <p class="text-xl">{{ user?.email }}</p>
         </UCard>
