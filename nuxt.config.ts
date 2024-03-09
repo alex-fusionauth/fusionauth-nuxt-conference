@@ -3,6 +3,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ["@sidebase/nuxt-auth", "@nuxt/ui"],
   auth: {
+    globalAppMiddleware: true,
     provider: {
       type: "authjs",
     },
